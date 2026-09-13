@@ -82,3 +82,5 @@ jobs:
           VALIDATE_BIOME_FORMAT: false
           VALIDATE_BIOME_LINT: false
           VALIDATE_PYTHON_BLACK: false
+          VALIDATE_PHP_BUILTIN: false
+          VALIDATE_PHP_COMPOSER: false
