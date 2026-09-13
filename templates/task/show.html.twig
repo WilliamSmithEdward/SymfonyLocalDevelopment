@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ task.title }}{% endblock %}
+
+{% block body %}
+    {% embed '@Design/card.html.twig' with { title: task.title, subtitle: task.completed ? 'Completed' : 'Open' } %}
+        {% block body %}
+            <p>{{ task.description|default('No description.') }}</p>
+            <p class="meta">Created {{ task.createdAt|date('j M Y, H:i') }}</p>
+        {% endblock %}
+    {% endembed %}
+
+    {% if siblings|length > 1 %}
+        <h2>Others in the same state</h2>
+        <ul>
+            {% for sibling in siblings|filter(s => s.id != task.id) %}
+                {% include 'task/_row.html.twig' with { task: sibling } only %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {{ include('@Design/button.html.twig', {
+        href: path('task_edit', { id: task.id }),
+        label: 'Edit',
+        variant: 'secondary'
+    }) }}
+{% endblock %}

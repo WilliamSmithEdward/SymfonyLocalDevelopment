@@ -1,0 +1,16 @@
+{#
+    A framing card, reached through the @Design namespace.
+
+    Expects: title, and a "body" block supplied by the caller through embed.
+#}
+<section class="card">
+    <header class="card__header">
+        <h2 class="card__title">{{ title }}</h2>
+        {% if subtitle is defined and subtitle %}
+            <p class="card__subtitle">{{ subtitle }}</p>
+        {% endif %}
+    </header>
+    <div class="card__body">
+        {% block body %}{% endblock %}
+    </div>
+</section>

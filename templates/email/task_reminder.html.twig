@@ -1,0 +1,25 @@
+{#
+    Rendered to a string with renderView rather than returned as a response.
+
+    Expects: task, dueLabel
+#}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Reminder: {{ task.title }}</title>
+    </head>
+    <body>
+        <p>A quick reminder about <strong>{{ task.title }}</strong>.</p>
+
+        {% if task.description %}
+            <blockquote>{{ task.description }}</blockquote>
+        {% endif %}
+
+        <p>Please take a look {{ dueLabel }}.</p>
+
+        <p>
+            <a href="{{ url('task_show', { id: task.id }) }}">Open the task</a>
+        </p>
+    </body>
+</html>

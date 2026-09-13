@@ -1,5 +1,9 @@
 twig:
     file_name_pattern: '*.twig'
+    paths:
+        # A second Twig namespace, so shared partials can live outside
+        # templates/ and be referenced as "@Design/card.html.twig".
+        '%kernel.project_dir%/design': Design
 
 when@test:
     twig:

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block body %}
+    <h1>Tasks</h1>
+
+    <p class="summary">
+        {{ openCount }} open, {{ doneCount }} done.
+        {% include '_partials/alert.html.twig' with { tone: 'info', message: 'Showing newest first.' } only %}
+    </p>
+
+    {% if tasks is empty %}
+        {% include '_partials/empty_state.html.twig' with {
+            heading: 'No tasks yet',
+            hint: 'Create the first one to get started.',
+            href: path('task_new')
+        } only %}
+    {% else %}
+        <ul class="task-list">
+            {% for task in tasks %}
+                {% include 'task/_row.html.twig' with { task: task } only %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {{ include('@Design/button.html.twig', { href: path('task_new'), label: 'New task' }) }}
+{% endblock %}

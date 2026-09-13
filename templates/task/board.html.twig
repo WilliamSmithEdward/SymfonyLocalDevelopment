@@ -1,0 +1,28 @@
+{#
+    Rendered through the #[Template] attribute rather than a render() call,
+    so its context comes from the array the controller returns.
+
+    Expects: columns, total
+#}
+{% extends 'base.html.twig' %}
+
+{% block title %}Board{% endblock %}
+
+{% block body %}
+    <h1>Board <small>({{ total }} total)</small></h1>
+
+    <div class="board">
+        {% for state, tasks in columns %}
+            <div class="board__column board__column--{{ state }}">
+                <h2>{{ state|capitalize }} ({{ tasks|length }})</h2>
+                <ul>
+                    {% for task in tasks %}
+                        {% include 'task/_row.html.twig' with { task: task } only %}
+                    {% else %}
+                        <li class="board__empty">Nothing here.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

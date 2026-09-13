@@ -1,0 +1,14 @@
+{#
+    An application override of a bundle template. Twig resolves the @Twig
+    namespace through templates/bundles/TwigBundle first, so this file wins
+    over the copy that ships inside the bundle.
+#}
+{% extends 'base.html.twig' %}
+
+{% block title %}Not found{% endblock %}
+
+{% block body %}
+    <h1>That page does not exist</h1>
+    {% include '_partials/alert.html.twig' with { tone: 'warning', message: 'Check the address and try again.' } only %}
+    {{ include('@Design/button.html.twig', { href: path('task_index'), label: 'Back to tasks' }) }}
+{% endblock %}

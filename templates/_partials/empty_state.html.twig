@@ -1,0 +1,8 @@
+{#
+    Expects: heading, hint, href
+#}
+<div class="empty-state">
+    <h2 class="empty-state__heading">{{ heading }}</h2>
+    <p class="empty-state__hint">{{ hint }}</p>
+    {{ include('@Design/button.html.twig', { href: href, label: 'Get started' }) }}
+</div>

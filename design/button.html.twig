@@ -1,0 +1,6 @@
+{#
+    A link styled as a button, reached through the @Design namespace.
+
+    Expects: href, label. Optional: variant.
+#}
+<a class="button button--{{ variant|default('primary') }}" href="{{ href }}">{{ label }}</a>

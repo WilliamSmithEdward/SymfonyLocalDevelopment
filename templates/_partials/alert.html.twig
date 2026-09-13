@@ -1,0 +1,4 @@
+{#
+    Expects: message. Optional: tone
+#}
+<div class="alert alert--{{ tone|default('info') }}" role="status">{{ message }}</div>

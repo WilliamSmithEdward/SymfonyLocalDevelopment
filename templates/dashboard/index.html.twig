@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+    <h1>Dashboard</h1>
+
+    {% embed '@Design/card.html.twig' with { title: 'Progress', subtitle: completionRate ~ '% complete' } %}
+        {% block body %}
+            <ul class="stats">
+                <li>Open: {{ openCount }}</li>
+                <li>Done: {{ doneCount }}</li>
+                <li>Total: {{ totalCount }}</li>
+            </ul>
+        {% endblock %}
+    {% endembed %}
+
+    <h2>Recently added</h2>
+    {% if recent is empty %}
+        {% include '_partials/empty_state.html.twig' with {
+            heading: 'Nothing yet',
+            hint: 'Tasks you add will show up here.',
+            href: path('task_new')
+        } only %}
+    {% else %}
+        <ul class="task-list">
+            {% for task in recent %}
+                {% include 'task/_row.html.twig' with { task: task } only %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {{ include('@Design/button.html.twig', { href: path('task_index'), label: 'All tasks' }) }}
+{% endblock %}

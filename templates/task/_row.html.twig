@@ -1,0 +1,15 @@
+{#
+    One row in the task list.
+
+    Expects: task
+#}
+<li class="task-row {{ task.completed ? 'task-row--done' : '' }}">
+    <a href="{{ path('task_show', { id: task.id }) }}">{{ task.title }}</a>
+
+    {% include '@Design/badge.html.twig' with {
+        label: task.completed ? 'done' : 'open',
+        tone: task.completed ? 'success' : 'warning'
+    } only %}
+
+    <time datetime="{{ task.createdAt|date('c') }}">{{ task.createdAt|date('j M Y') }}</time>
+</li>

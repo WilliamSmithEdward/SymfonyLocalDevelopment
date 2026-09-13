@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ heading }}{% endblock %}
+
+{% block body %}
+    <h1>{{ heading }}</h1>
+    {% include 'task/_form.html.twig' with { action: action, task: task } only %}
+{% endblock %}

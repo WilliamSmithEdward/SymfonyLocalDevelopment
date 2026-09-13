@@ -1,0 +1,24 @@
+{#
+    Shared by task/new.html.twig and task/edit.html.twig, which is what makes
+    this template reachable from more than one place.
+
+    Expects: action. Optional: task
+#}
+<form class="task-form" method="post" action="{{ action }}">
+    <label>
+        Title
+        <input type="text" name="title" value="{{ task is defined and task ? task.title : '' }}" required>
+    </label>
+
+    <label>
+        Description
+        <textarea name="description" rows="4">{{ task is defined and task ? task.description : '' }}</textarea>
+    </label>
+
+    <label>
+        <input type="checkbox" name="completed" {{ task is defined and task and task.completed ? 'checked' : '' }}>
+        Completed
+    </label>
+
+    <button type="submit">Save</button>
+</form>
